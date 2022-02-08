@@ -1,0 +1,48 @@
+{% extends 'inventory/index.html' %}
+
+{% block results %}
+    <div class="row text-center justify-content-center">
+        {% if user %}
+            <div class="col-3">
+                <div class="card border" id="user-card">
+                    <div class="card-header text-white">
+                            {{ user.nev }}
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-unstyled">
+                            <li>Felhasználónév: {{ user.felhasznalo_nev }}</li>
+                            <li>Szervezeti egység: {{ user.szervezeti_egyseg }}</li>
+                            <li>Szobaszám: {{ user.szoba_szam }}</li>
+                            <li>
+                                <ul class="list-group">
+                                    Nevén van:
+                                    {% for asset in user.asset_set.all %}
+                                        <li class="list-group-item"><a>{{ asset.megnevezes }}</a></li>
+                                    {% endfor %}
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
+        {% if asset %}
+            <div class="col-3">
+                <div class="card border" id="asset-card">
+                    <div class="card-header text-white">
+                            {{ user.nev }}
+                            Pelda device
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-unstyled">
+                            <li>Lenovo pc</li>
+                            <li>L0334352</li>
+                            <li>SNBCGB7600</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

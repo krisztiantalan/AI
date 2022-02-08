@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FTO AI</title>
+    {% load static %}
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    <link rel="stylesheet" type="text/css" href="{% static 'inventory/style.css' %}">
+</head>
+<body>
+
+    <nav id="nav_custom" class="navbar sticky-top navbar-light bg-light p-3 border-bottom border-2 border-primary">
+        <div class="container-fluid">
+
+            <a class="navbar-brand" href="{% url 'inventory:index' %}"><button type="button" class="btn btn-primary">FTO eszköznyilvántartás</button></a>
+            <div class="d-flex flex-row bd-highlight">
+                <div class="p-2">
+                    <a href="/admin"><button type="button" class="btn btn-primary">Admin</button></a>
+                </div>
+                <div class="p-2">
+                    <form class="form-inline" action="{% url 'inventory:results' %}" method="get">
+                        <input class="form-control me-2 border-primary" id="search" name="q" type="search" placeholder="Név, gépszám, stb..." aria-label="Search">
+                        <button class="btn btn-primary" type="submit">Keresés</button>
+                    </form>
+                </div>
+            <div>
+        </div>
+    </nav>
+
+    <div class="container p-5" >
+        {% if error %}
+            <h1 class="text-center">{{ error }}</h1>
+        {% endif %}
+
+        {% block user %}
+        {% endblock %}
+
+        {% block asset %}
+        {% endblock %}
+
+        <div class="container p-5">
+            <div class="accordion accordion-flush" id="all_accordion">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="all_accordion_heading">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"  data-bs-target="#all_accordion_collapse" aria-expanded="false" aria-controls="all_accordion_collapse">
+                            Eszközök és felhasználók
+                        </button>
+                    </h2>
+                    <div id="all_accordion_collapse" class="accordion-collapse collapse" aria-labelledby="all_accordion_heading"
+                         data-bs-parent="all_accordion">
+                        <div class="accordion-body">
+                            <div class="row">
+                                <div class="col-6">
+                                    Lenovo PC:
+                                    <ul>
+                                        <form action="{% url 'inventory:results' %}" method="get">
+                                            <select class="form-select" name="q">
+                                                {% for asset in assets %}
+                                                    {% if asset.megnevezes == 'Lenovo PC' %}
+                                                        <option value="{{asset.vonalkod}}">{{ asset.vonalkod }}</option>
+                                                    {% endif %}
+                                                {% endfor %}
+                                            </select>
+                                            <button type="submit" class="btn btn-primary mt-2">Eszköz adatok</button>
+                                        </form>
+                                    </ul>
+                                </div>
+                                <div class="col-6">
+                                    Felhasználók:
+                                    <form action="{% url 'inventory:results' %}" method="get">
+                                        <select class="form-select" name="q">
+                                            {% for user in users %}
+                                                <option value="{{user.nev}}">{{ user.nev }}</option>
+                                            {% endfor %}
+                                        </select>
+                                        <button type="submit" class="btn btn-primary mt-2">Felhasználó adatok</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

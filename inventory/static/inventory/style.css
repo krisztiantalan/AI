@@ -1,0 +1,27 @@
+#user-card {
+    border-color: #B23CFD !important;
+}
+
+#user-accordion {
+    border-color: #B23CFD !important;
+}
+
+#user-card .card-header {
+    background: #B23CFD !important
+}
+
+#user-accordion h2 {
+    border-color: #B23CFD !important
+}   
+
+#asset-card {
+    border-color: #20c997 !important;
+}
+
+#asset-accordion {
+    border-color: #20c997 !important;
+}
+
+#asset-card .card-header {
+    background: #20c997 !important;
+}
