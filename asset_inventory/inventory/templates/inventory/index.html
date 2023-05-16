@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+    <title>FTO AI</title>
+    {% load static %}
+    {% load django_bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    <link rel="stylesheet" type="text/css" href="{% static 'inventory/style.css' %}">
+</head>
+<body class="bg-dark">
+
+    <nav class="navbar navbar-expand-lg bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{% url 'inventory:index' %}">Asset inventory management</a>
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a href="{% url 'inventory:total' %}"><button class="btn btn-outline-success" type="submit">All assets and users</button></a>
+                    <a href="{% url 'inventory:index' %}"><button class="btn btn-outline-success" type="submit">Add user</button></a>
+                    <a href="{% url 'inventory:index' %}"><button class="btn btn-outline-success" type="submit">Add asset</button></a>
+                </li>
+            </ul>
+            <form class="d-flex" action="{% url 'inventory:results' %}" method="get">
+                <input class="form-control me-2" id="search" name="q" type="search" placeholder="Name, serial no, etc..." aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+          </form>
+        </div>
+    </nav>
+
+    <div class="container p-5">
+        {% if error %}
+            <h1 class="text-center">{{ error }}</h1>
+        {% endif %}
+
+        {% block user %}
+        {% endblock %}
+
+        {% block asset %}
+        {% endblock %}
+
+        <div class="row" align="center">
+            {% block results %}
+            {% endblock %}
+        </div>
+
+        <div class="row" align="center">
+            {% block total %}
+            {% endblock %}
+        </div>
+    </div>
+
+</body>
+</html>
