@@ -1,0 +1,58 @@
+{% extends 'inventory/index.html' %}
+
+{% block asset %}
+<div class="row text-center justify-content-center">
+   <div class="col-4">
+        <div class="card text-white bg-dark mb-3 border border-success" id="asset-card">
+            <div class="card-header text-white">
+                    {{ asset.designation }}
+            </div>
+            <div class="card-body">
+                <ul class="list-unstyled">
+                    <li>Designation: {{asset.designation }}</li>
+                    <li>Barcode: {{ asset.barcode }}</li>
+                    <li>Gépszám: {{ asset.serial_no }}</li>
+                    <li>
+                        Current user:
+                    </li>
+                        <li >
+                            <a href="{% url 'inventory:user' asset.user.id %}">{{ asset.user.username }}</a>
+                        </li>
+                        <li>
+                            Transfer to another user
+                            <form action="{% url 'inventory:modify' asset.id %}" method="post">
+                                {% csrf_token %}
+                                <div class="row justify-content-md-center">
+                                    <div class="col-5">
+                                        <select class="form-select list-group-item list-group-item-action" name="user">
+                                            {% for user in users %}
+                                                {% if user != asset.user and user.id != 1 and user.id != 2 %}
+                                                    <option value="{{ user.id }}">
+                                                        {{ user.name }}
+                                                    </option>
+                                                {% endif %}
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                                <button class="btn btn-outline-success m-2" type="submit">Transfer</button>
+                            </form>
+                        </li>
+                    </li>
+                    <li>
+                        <form action="{% url 'inventory:modify' asset.id %}" method="post">
+                            {% csrf_token %}
+                            <button class="btn btn-outline-success m-2" type="submit" name="waste">
+                                Waste
+                            </button>
+                            <button class="btn btn-outline-success m-2" type="submit" name="stock">
+                                Stock
+                            </button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
