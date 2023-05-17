@@ -19,9 +19,7 @@
                                 {% for asset in user.asset_set.all %}
                                 <div class="row justify-content-md-center">
                                     <div class="col-5">
-                                        <li class="list-group-item list-group-item-action">
-                                            <a href="{% url 'inventory:asset' asset.id %}">{{ asset.designation }}</a>
-                                        </li>
+                                        <a class="list-group-item list-group-item-action" href="{% url 'inventory:asset' asset.id %}">{{ asset.designation }}</a>
                                     </div>
                                 </div>
                                 {% endfor %}
