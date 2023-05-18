@@ -3,7 +3,7 @@
 {% block user %}
 <div class="row text-center justify-content-center">
     <div class="col-4">
-        <div class="card text-white bg-dark mb-3 border border-success" id="user-card">
+        <div class="card bg-dark mb-3 border border-success" id="user-card">
             <div class="card-header text-white">
                     {{ user.name }}
             </div>
@@ -28,6 +28,14 @@
                             No items on the user.
                         {% endif %}
                     </li>
+                    <form action="{% url 'inventory:modify' user.id %}" method="post">
+                        {% csrf_token %}
+                        {% if user.id != 1 and user.id != 2 %}
+                        <button class="confirm-delete btn btn-outline-success m-2" type="submit" name="delete_user">
+                            Delete
+                        </button>
+                        {% endif %}
+                    </form>
                 </ul>
             </div>
         </div>
