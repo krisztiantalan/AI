@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
-    <title>FTO AI</title>
+    <title>Asset inventory management</title>
     {% load static %}
     {% load bootstrap5 %}
     {% bootstrap_css %}
     {% bootstrap_javascript %}
     <link rel="stylesheet" type="text/css" href="{% static 'inventory/style.css' %}">
 </head>
-<body class="bg-dark">
+<body class="bg-dark text-white">
 
     <nav class="navbar navbar-expand-lg bg-dark border-bottom border-success">
         <div class="container-fluid">
@@ -17,8 +17,8 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
                     <a href="{% url 'inventory:total' %}"><button class="btn btn-outline-success" type="submit">All assets and users</button></a>
-                    <a href="{% url 'inventory:index' %}"><button class="btn btn-outline-success" type="submit">Add user</button></a>
-                    <a href="{% url 'inventory:index' %}"><button class="btn btn-outline-success" type="submit">Add asset</button></a>
+                    <a href="{% url 'inventory:create_user' %}"><button class="btn btn-outline-success" type="submit">Add user</button></a>
+                    <a href="{% url 'inventory:create_asset' %}"><button class="btn btn-outline-success" type="submit">Add asset</button></a>
                 </li>
             </ul>
             <form class="d-flex" action="{% url 'inventory:results' %}" method="get">
@@ -39,16 +39,20 @@
         {% block asset %}
         {% endblock %}
 
-        <div class="row" align="center">
-            {% block results %}
-            {% endblock %}
-        </div>
+        {% block results %}
+        {% endblock %}
 
-        <div class="row" align="center">
-            {% block total %}
-            {% endblock %}
-        </div>
+        {% block total %}
+        {% endblock %}
+
+        {% block create_user %}
+        {% endblock %}
+
+        {% block create_asset %}
+        {% endblock %}
     </div>
 
+    <script type="text/javascript" src="{% static 'inventory/js/jquery-3.7.0.js' %}"></script>
+    <script src="{% static 'inventory/js/script.js' %}"></script>
 </body>
 </html>

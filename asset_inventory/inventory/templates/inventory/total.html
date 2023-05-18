@@ -1,7 +1,7 @@
 {% extends 'inventory/index.html' %}
 
 {% block total %}
-
+<div class="row" align="center">
     <div class="col-6">
         <h1 class="text-white bg-dark">users:</h1>
         <div class="list-group">
@@ -17,10 +17,12 @@
         <div class="list-group">
             {% for asset in assets %}
             <div class="col-3 align-self-center">
-                <a class="list-group-item list-group-item-action" href="/asset/{{ asset.id }}/">{{ asset.designation }}</a>
+                <a class="list-group-item list-group-item-action"
+                   href="/asset/{{ asset.id }}/">{{ asset.designation }}</a>
             </div>
             {% endfor %}
         </div>
     </div>
+</div>
 
 {% endblock %}

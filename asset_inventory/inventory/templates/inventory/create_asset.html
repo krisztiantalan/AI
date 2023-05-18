@@ -1,0 +1,13 @@
+{% extends 'inventory/index.html' %}
+
+{% block create_asset %}
+<h1>Add a new asset</h1>
+<form action="{% url 'inventory:create_asset' %}" method="POST">
+{% csrf_token %}
+    Barcode: <input type="text" name="barcode"/>
+    Serial number: <input type="text" name="serial_no"/>
+    Designation: <input type="text" name="designation"/>
+    Other: <input type="text" name="other"/>
+    <input type="submit" value="Create asset">
+</form>
+{% endblock %}

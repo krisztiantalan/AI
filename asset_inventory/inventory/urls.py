@@ -9,5 +9,7 @@ urlpatterns = [
     path('results/', views.results, name='results'),
     path('asset/<int:id>/', views.asset, name='asset'),
     path('user/<int:id>/', views.user, name='user'),
-    path('user/total', views.total, name="total"),
+    path('total', views.total, name="total"),
+    path('create_user', views.create_user, name="create_user"),
+    path('create_asset', views.create_asset, name="create_asset"),
 ]

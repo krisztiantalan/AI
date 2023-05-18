@@ -3,7 +3,7 @@
 {% block asset %}
 <div class="row text-center justify-content-center">
    <div class="col-4">
-        <div class="card text-white bg-dark mb-3 border border-success" id="asset-card">
+        <div class="card bg-dark mb-3 border border-success" id="asset-card">
             <div class="card-header text-white">
                     {{ asset.designation }}
             </div>
@@ -16,7 +16,7 @@
                         Current user:
                     </li>
                         <li >
-                            <a href="{% url 'inventory:user' asset.user.id %}">{{ asset.user.username }}</a>
+                            <a href="{% url 'inventory:user' asset.user.id %}">{{ asset.user.name }}</a>
                         </li>
                         <li>
                             Transfer to another user
@@ -42,11 +42,14 @@
                     <li>
                         <form action="{% url 'inventory:modify' asset.id %}" method="post">
                             {% csrf_token %}
+                            <button class="btn btn-outline-success m-2" type="submit" name="stock">
+                                Stock
+                            </button>
                             <button class="btn btn-outline-success m-2" type="submit" name="waste">
                                 Waste
                             </button>
-                            <button class="btn btn-outline-success m-2" type="submit" name="stock">
-                                Stock
+                            <button class="confirm-delete btn btn-outline-success m-2" type="submit" name="delete_asset">
+                                Delete
                             </button>
                         </form>
                     </li>

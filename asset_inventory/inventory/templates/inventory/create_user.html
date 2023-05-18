@@ -1,0 +1,13 @@
+{% extends 'inventory/index.html' %}
+
+{% block create_user %}
+<h1>Add a new user</h1>
+<form action="{% url 'inventory:create_user' %}" method="POST">
+{% csrf_token %}
+    Name: <input type="text" name="name"/>
+    Username: <input type="text" name="username"/>
+    Department: <input type="text" name="department"/>
+    Office: <input type="number" name="office"/>
+    <input type="submit" value="Create user">
+</form>
+{% endblock %}
