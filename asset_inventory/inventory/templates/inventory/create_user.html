@@ -1,13 +1,21 @@
 {% extends 'inventory/index.html' %}
 
 {% block create_user %}
-<h1>Add a new user</h1>
-<form action="{% url 'inventory:create_user' %}" method="POST">
-{% csrf_token %}
-    Name: <input type="text" name="name"/>
-    Username: <input type="text" name="username"/>
-    Department: <input type="text" name="department"/>
-    Office: <input type="number" name="office"/>
-    <input type="submit" value="Create user">
-</form>
+<div class="row">
+    <div class="form-group offset-md-3">
+        <h1>Add a new user</h1><br>
+        <form action="{% url 'inventory:create_user' %}" method="POST">
+            {% csrf_token %}
+            <div class="row" align="center">
+                <div class="form-group col-6 align-self-center">
+                    Name: <input type="text" class="form-control" name="name"/>
+                    Username: <input type="text" class="form-control" name="username"/>
+                    Department: <input type="text" class="form-control" name="department"/>
+                    Office: <input type="number" class="form-control" name="office"/><br>
+                    <button class="btn btn-outline-success" type="submit">Create User</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
 {% endblock %}
