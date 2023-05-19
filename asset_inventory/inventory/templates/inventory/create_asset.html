@@ -3,7 +3,7 @@
 {% block create_asset %}
 <div class="row">
     <div class="form-group offset-md-3">
-        <h1>Add a new asset</h1>
+        <h1>Add a new asset</h1><br>
         <form action="{% url 'inventory:create_asset' %}" method="POST">
             {% csrf_token %}
             <div class="row" align="center">
@@ -11,7 +11,7 @@
                     Barcode: <input type="text" class="form-control" name="barcode"/>
                     Serial number: <input type="text" class="form-control" name="serial_no"/>
                     Designation: <input type="text" class="form-control" name="designation"/>
-                    Other: <input type="text" class="form-control" name="other"/>
+                    Other: <input type="text" class="form-control" name="other"/><br>
                     <button class="btn btn-outline-success" type="submit">Create Asset</button>
                 </div>
             </div>
